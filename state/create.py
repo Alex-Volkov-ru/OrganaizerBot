@@ -5,3 +5,7 @@ class CreateState(StatesGroup):
     date = State()
     amount = State()
     categories = State()
+    keys = State()
+    walet = State()
+    # Синхронизация
+
