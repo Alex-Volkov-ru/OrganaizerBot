@@ -8,4 +8,5 @@ class CreateState(StatesGroup):
     keys = State()
     walet = State()
     # Синхронизация
+    # Синхронизация повторная
 
