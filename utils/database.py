@@ -18,30 +18,37 @@ class Database():
                      "id INTEGER PRIMARY KEY,"
                      "amount INTEGER,"
                      "wallet_id INTEGER,"
-                     "categories INTEGER);"
+                     "category_id INTEGER,"
+                     "date_transactions INTEGER,"
+                     "FOREIGN KEY(wallet_id) REFERENCES wallet(id),"
+                     "FOREIGN KEY(category_id) REFERENCES categories(id));"
                      
                      "CREATE TABLE IF NOT EXISTS wallet("
                      "id INTEGER PRIMARY KEY,"
                      "id_user INTEGER,"
-                     "Balance INTEGER);"
+                     "Balance INTEGER,"
+                     "FOREIGN KEY(id_user) REFERENCES users(id));"
                      
                      "CREATE TABLE IF NOT EXISTS categories("
                      "id INTEGER PRIMARY KEY,"
                      "description TEXT,"
                      "category TEXT);")
+
             self.cursor.executescript(query)
             self.connection.commit()
         except sqlite3.Error as Error:
             print('Ошибка при создании:', Error)
+
     def add_user(self, user_name, user_phone, telegram_id):
         self.cursor.execute(f'INSERT INTO users (user_name,user_phone,telegram_id) VALUES (?,?,?)', (user_name, user_phone, telegram_id))
         self.connection.commit()
     def select_user_id(self, telegram_id):
         users = self.cursor.execute("SELECT * FROM users WHERE telegram_id = ?", (telegram_id,))
         return users.fetchone()
-    def db_select_all(self, table):
-        result = self.cursor.execute("SELECT * FROM {}".format(table))
+    def db_select_Income(self, table):
+        result = self.cursor.execute("SELECT id, category, category_type_id FROM categories".format(table)) # Выгрузка данных с БД категорий
         return result.fetchall()
+
     def __del__(self):
         self.cursor.close()
         self.connection.close()

@@ -30,15 +30,15 @@ dp.message.register(get_start, Command(commands='start'))
 dp.message.register(get_help, Command(commands='help'))
 
 # Регистрируем хэндлеры регистрации
-dp.message.register(start_register, F.text=='Активация бота')
-dp.message.register(get_help, F.text=='Помощь')
+dp.message.register(start_register, F.text == 'Активация бота')
+dp.message.register(get_help, F.text == 'Помощь')
 
 dp.message.register(register_name, RegisterState.regName)
 dp.message.register(register_phone, RegisterState.regPhone)
 
-#Регистрируем хэндлеры с записей по доходам и расходам
+# Регистрируем хэндлеры с записей по доходам и расходам
 dp.message.register(create_category_income, F.text == 'Доходы/Расходы')
-dp.message.register(create_category_expensens, F.text == 'Расходы')
+dp.message.register(create_category_expensens, F.text == 'Доходы')
 dp.callback_query.register(select_category, CreateState.categories)
 dp.callback_query.register(select_date, CreateState.date)
 
