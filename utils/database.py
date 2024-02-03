@@ -16,7 +16,6 @@ class Database():
                      
                      "CREATE TABLE IF NOT EXISTS transactions("
                      "id INTEGER PRIMARY KEY,"
-                     "date_transaction TEXT,"
                      "amount INTEGER,"
                      "wallet_id INTEGER,"
                      "categories INTEGER);"
