@@ -7,6 +7,4 @@ class CreateState(StatesGroup):
     categories = State()
     keys = State()
     walet = State()
-    # Синхронизация
-    # Синхронизация повторная
 

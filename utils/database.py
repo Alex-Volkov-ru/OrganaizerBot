@@ -17,10 +17,9 @@ class Database():
                      "CREATE TABLE IF NOT EXISTS transactions("
                      "id INTEGER PRIMARY KEY,"
                      "date_transaction TEXT,"
-                     "time_transaction TEXT,"
                      "amount INTEGER,"
                      "wallet_id INTEGER,"
-                     "category_id INTEGER);"
+                     "categories INTEGER);"
                      
                      "CREATE TABLE IF NOT EXISTS wallet("
                      "id INTEGER PRIMARY KEY,"
@@ -38,8 +37,6 @@ class Database():
     def add_user(self, user_name, user_phone, telegram_id):
         self.cursor.execute(f'INSERT INTO users (user_name,user_phone,telegram_id) VALUES (?,?,?)', (user_name, user_phone, telegram_id))
         self.connection.commit()
-
-
     def select_user_id(self, telegram_id):
         users = self.cursor.execute("SELECT * FROM users WHERE telegram_id = ?", (telegram_id,))
         return users.fetchone()

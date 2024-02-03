@@ -12,8 +12,7 @@ from handlers.help import get_help
 from state.register import RegisterState
 from state.create import CreateState
 from handlers.register import start_register, register_phone, register_name
-from filters.CheckAdmin import CheckAdmin
-from handlers.admin.create import create_category, select_category, select_date, select_amount
+from handlers.admin.create import create_category_income, select_category, select_date, select_amount, create_category_expensens
 
 load_dotenv()
 
@@ -32,11 +31,14 @@ dp.message.register(get_help, Command(commands='help'))
 
 # Регистрируем хэндлеры регистрации
 dp.message.register(start_register, F.text=='Активация бота')
+dp.message.register(get_help, F.text=='Помощь')
+
 dp.message.register(register_name, RegisterState.regName)
 dp.message.register(register_phone, RegisterState.regPhone)
 
 #Регистрируем хэндлеры с записей по доходам и расходам
-dp.message.register(create_category, Command(commands='create'), CheckAdmin())
+dp.message.register(create_category_income, F.text == 'Доходы/Расходы')
+dp.message.register(create_category_expensens, F.text == 'Расходы')
 dp.callback_query.register(select_category, CreateState.categories)
 dp.callback_query.register(select_date, CreateState.date)
 

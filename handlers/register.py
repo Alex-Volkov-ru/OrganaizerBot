@@ -13,7 +13,8 @@ async def start_register(message: Message, state: FSMContext, bot: Bot):
     if(users):
         await bot.send_message(message.from_user.id, f'{users[1]}, Бот уже активирован!')
     else:
-        await bot.send_message(message.from_user.id,f'Давайте начнем регистрацию \nДля начала скажите, как к Вам обращаться? \n')
+        await bot.send_message(message.from_user.id,f'Давайте начнем регистрацию \n'
+                                                        f'Для начала скажите, как к Вам обращаться? \n')
         await state.set_state(RegisterState.regName)
 
 
