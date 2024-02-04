@@ -37,8 +37,8 @@ dp.message.register(register_name, RegisterState.regName)
 dp.message.register(register_phone, RegisterState.regPhone)
 
 # Регистрируем хэндлеры с записей по доходам и расходам
-dp.message.register(create_category_income, F.text == 'Доходы/Расходы')
-dp.message.register(create_category_expensens, F.text == 'Доходы')
+dp.message.register(create_category_income, F.text == 'Доходы')
+dp.message.register(create_category_expensens, F.text == 'Доходы/Расходы')
 dp.callback_query.register(select_category, CreateState.categories)
 dp.callback_query.register(select_date, CreateState.date)
 

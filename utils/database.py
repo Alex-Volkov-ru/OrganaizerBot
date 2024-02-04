@@ -29,10 +29,17 @@ class Database():
                      "Balance INTEGER,"
                      "FOREIGN KEY(id_user) REFERENCES users(id));"
                      
+                     "CREATE TABLE IF NOT EXISTS category_type("
+                     "id INTEGER PRIMARY KEY,"
+                     "name TEXT);"
+                                                              
+                     
                      "CREATE TABLE IF NOT EXISTS categories("
                      "id INTEGER PRIMARY KEY,"
                      "description TEXT,"
-                     "category TEXT);")
+                     "category TEXT,"
+                     "category_type_id	INTEGER,"
+                     "FOREIGN KEY(category_type_id) REFERENCES category_type(id));")
 
             self.cursor.executescript(query)
             self.connection.commit()
@@ -46,7 +53,10 @@ class Database():
         users = self.cursor.execute("SELECT * FROM users WHERE telegram_id = ?", (telegram_id,))
         return users.fetchone()
     def db_select_Income(self, table):
-        result = self.cursor.execute("SELECT id, category, category_type_id FROM categories".format(table)) # Выгрузка данных с БД категорий
+        result = self.cursor.execute("SELECT id, category, category_type_id FROM categories WHERE category_type_id = 1".format(table)) # Выгрузка данных с БД категорий
+        return result.fetchall()
+    def db_select_Expenses(self, table):
+        result = self.cursor.execute("SELECT id, category, category_type_id FROM categories WHERE category_type_id = 2".format(table)) # Выгрузка данных с БД категорий
         return result.fetchall()
 
     def __del__(self):

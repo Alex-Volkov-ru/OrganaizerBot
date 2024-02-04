@@ -5,7 +5,7 @@ import datetime
 from utils.database import Database
 def categoriesIncome_kb():
     db = Database(os.getenv('DATABASE_NAME'))
-    category = db.db_select_Income('categories')
+    category = db.db_select_Expenses('categories')
     kb = InlineKeyboardBuilder()
     for categories in category:
         kb.button(text=f'{categories[1]}', callback_data=f'{categories[0]}')
@@ -13,10 +13,10 @@ def categoriesIncome_kb():
     return kb.as_markup()
 def categoriesExpenses_kb():
     db = Database(os.getenv('DATABASE_NAME'))
-    category = db.db_select_Income('categories')
+    category = db.db_select_Expenses('categories')
     kb = InlineKeyboardBuilder()
-    for categ in range(11):
-        kb.button(text=f'{category[categ][1]}', callback_data=f'{category[categ][0]}')
+    for categories in category:
+        kb.button(text=f'{categories[1]}', callback_data=f'{categories[0]}')
     kb.adjust(3)
     return kb.as_markup()
 

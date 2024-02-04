@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="781e2876-0b34-4b2b-b56f-e58dd645cf9d" name="Changes" comment="" />
+    <list default="true" id="781e2876-0b34-4b2b-b56f-e58dd645cf9d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keyboards/create_kb.py" beforeDir="false" afterPath="$PROJECT_DIR$/keyboards/create_kb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tgbot_db.db" beforeDir="false" afterPath="$PROJECT_DIR$/tgbot_db.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/database.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ToolWindowProblems.ShowToolbar": "false",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/qweas/Documents/Project/Organizer",
     "settings.editor.selected.configurable": "preferences.editor"
   }
