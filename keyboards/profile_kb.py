@@ -8,3 +8,10 @@ profile_kb = ReplyKeyboardMarkup(keyboard=[
 ], resize_keyboard=True, one_time_keyboard=True, input_field_placeholder='Выбери пункт ниже')
 
 
+category_type_kb = ReplyKeyboardMarkup(
+keyboard=[
+    [KeyboardButton(text='Доходы')],
+    [KeyboardButton(text='Расходы')],
+], resize_keyboard=True, one_time_keyboard=True, input_field_placeholder='Выбери пункт ниже'
+)
+

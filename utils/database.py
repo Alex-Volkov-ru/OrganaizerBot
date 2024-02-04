@@ -19,7 +19,7 @@ class Database():
                      "amount INTEGER,"
                      "wallet_id INTEGER,"
                      "category_id INTEGER,"
-                     "date_transactions INTEGER,"
+                     "date INTEGER,"
                      "FOREIGN KEY(wallet_id) REFERENCES wallet(id),"
                      "FOREIGN KEY(category_id) REFERENCES categories(id));"
                      
@@ -49,6 +49,10 @@ class Database():
     def add_user(self, user_name, user_phone, telegram_id):
         self.cursor.execute(f'INSERT INTO users (user_name,user_phone,telegram_id) VALUES (?,?,?)', (user_name, user_phone, telegram_id))
         self.connection.commit()
+
+    def add_transaction(self, amount, date, category_id):
+        self.cursor.execute(f'INSERT INTO transactions(amount, date,category_id) VALUES (?,?,?)', (amount, date, category_id))
+        self.connection.commit()
     def select_user_id(self, telegram_id):
         users = self.cursor.execute("SELECT * FROM users WHERE telegram_id = ?", (telegram_id,))
         return users.fetchone()
@@ -58,6 +62,7 @@ class Database():
     def db_select_Expenses(self, table):
         result = self.cursor.execute("SELECT id, category, category_type_id FROM categories WHERE category_type_id = 2".format(table)) # Выгрузка данных с БД категорий
         return result.fetchall()
+
 
     def __del__(self):
         self.cursor.close()

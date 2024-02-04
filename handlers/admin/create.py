@@ -17,6 +17,7 @@ async def create_category_expensens(message: Message, state: FSMContext, bot: Bo
 async def select_category(call: CallbackQuery, state: FSMContext):
     await call.message.answer(f'Вы выбрали категорию!\n'
                               f'Дальше выберите дату.', reply_markup=date_kb())
+    await state.update_data(category_id=call.data)
     await call.message.edit_reply_markup(reply_markup=None)
     await call.answer()
     await state.set_state(CreateState.date)
@@ -27,11 +28,15 @@ async def select_date(callback_query: CallbackQuery, state: FSMContext, bot: Bot
     await state.update_data(date=callback_query.data)
     await state.set_state(CreateState.amount)
 
+
 async def select_amount(message: Message, state: FSMContext, bot: Bot):
     if (message.text.isdigit()):
         await bot.send_message(message.from_user.id, f'Отлично, я записал транзакцию! \n')
         await state.update_data(amount=message.text)
         create_data = await state.get_data()
         print(create_data)
+        db = Database(os.getenv('DATABASE_NAME'))
+        db.add_transaction(create_data['amount'],create_data['date'],create_data['category_id'])
+        await state.clear()
     else:
         await bot.send_message(message.from_user.id,f'{message.text}, не верный формат! Нужно указать сумму')

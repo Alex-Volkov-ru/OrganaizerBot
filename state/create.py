@@ -1,10 +1,14 @@
 from aiogram.fsm.state import StatesGroup, State
 
 class CreateState(StatesGroup):
-    place = State()
     date = State()
     amount = State()
     categories = State()
     keys = State()
-    walet = State()
+    wallet = State()
+    wallet_id = State()
+    category_id = State()
+    name = State()
+    category = State()
+
 
