@@ -5,7 +5,7 @@ from utils.database import Database
 import os
 from aiogram.fsm.context import FSMContext
 from state.create import CreateState
-from keyboards.profile_kb import profile_kb, category_type_kb
+from keyboards.profile_kb import profile_kb, category_type_kb, statistika_kb, balance_kb
 
 
 async def get_start(message: Message, bot: Bot):
@@ -21,6 +21,16 @@ async def get_start(message: Message, bot: Bot):
 async def category_type(message: Message, state: FSMContext, bot: Bot):
     db = Database(os.getenv('DATABASE_NAME'))
     await bot.send_message(message.from_user.id, f'выберите категорию ниже', reply_markup=category_type_kb)
+    await state.set_state(CreateState.categories)
+
+async def balance_type(message: Message, state: FSMContext, bot: Bot):
+    db = Database(os.getenv('DATABASE_NAME'))
+    await bot.send_message(message.from_user.id, f'выберите категорию ниже', reply_markup=balance_kb)
+    await state.set_state(CreateState.categories)
+
+async def statistic_type(message: Message, state: FSMContext, bot: Bot):
+    db = Database(os.getenv('DATABASE_NAME'))
+    await bot.send_message(message.from_user.id, f'выберите категорию ниже', reply_markup=statistika_kb)
     await state.set_state(CreateState.categories)
 
 

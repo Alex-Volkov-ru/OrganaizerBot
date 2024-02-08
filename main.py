@@ -7,7 +7,7 @@ import sys
 from aiogram.filters import Command
 
 from utils.commands import set_commands
-from handlers.start import get_start, category_type
+from handlers.start import get_start, category_type, balance_type, statistic_type
 from handlers.help import get_help
 from state.register import RegisterState
 from state.create import CreateState
@@ -40,6 +40,8 @@ dp.message.register(register_phone, RegisterState.regPhone)
 dp.message.register(create_category_income, F.text == 'Доходы')
 dp.message.register(create_category_expensens, F.text == 'Расходы')
 dp.message.register(category_type, F.text == 'Доходы/Расходы')
+dp.message.register(balance_type, F.text == 'Баланс')
+dp.message.register(statistic_type, F.text == 'Статистика')
 dp.callback_query.register(select_category, CreateState.categories)
 dp.callback_query.register(select_date, CreateState.date)
 
